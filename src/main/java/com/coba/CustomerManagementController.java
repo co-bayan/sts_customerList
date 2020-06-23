@@ -32,23 +32,23 @@ public class CustomerManagementController {
 	@PostConstruct
 	public void init() {
 		CustomerData d1 = new CustomerData();
-		d1.setFamilyName("�Z���N");
-		d1.setFirstName("���Y");
+		d1.setFamilyName("セラク");
+		d1.setFirstName("太郎");
 		repository.saveAndFlush(d1);
 		
 		CustomerData d2 = new CustomerData();
 		d2.setFamilyName("SMT");
-		d2.setFirstName("���Y");
+		d2.setFirstName("次郎");
 		repository.saveAndFlush(d2);
 		
 		CustomerData d3 = new CustomerData();
-		d3.setFamilyName("�V�h");
-		d3.setFirstName("�O�Y");
+		d3.setFamilyName("新宿");
+		d3.setFirstName("三郎");
 		repository.saveAndFlush(d3);
 		
 		CustomerData d4 = new CustomerData();
-		d4.setFamilyName("����");
-		d4.setFirstName("�l�Y");
+		d4.setFamilyName("東京");
+		d4.setFirstName("四郎");
 		repository.saveAndFlush(d4);
 	}
 
