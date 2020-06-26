@@ -8,15 +8,17 @@
 	body { margin:30px 100px; }
 	input { margin:8px; }
 	.name_input { margin-left:50px; }
-	th, td {}
+	.err { color:red; }
 </style>
 </head>
 <body>
 	<h1>顧客管理システム</h1>
 	<h4 class=border-bottom>顧客情報作成</h4>
-	<form method="post" action="/" class="name_input">
-		<label for="familyName">姓</label><input type="text" id="familyName" name="familyName" th:value="${familyName}"/><br/>
-		<label for="firstName">名</label><input type="text" id="firstName" name="firstName" th:value="${firstName}" /><br/>
+	<form method="post" action="/customers" th:object="${customer}" class="name_input">
+		<label for="familyName">姓</label><input type="text" name="familyName" th:value="*{familyName}" /><br/>
+		<div th:if="${#fields.hasErrors('familyName')}" th:errors="*{familyName}" th:errorclass="err" ></div>
+		<label for="firstName">名</label><input type="text" name="firstName" th:value="*{firstName}" /><br/>
+		<div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="err"></div>
 		<input type="submit" class="btn btn-primary" value="作成">
 	</form>
 	<hr>
@@ -34,8 +36,20 @@
 			<td th:text="${customer.id}"></td>
 			<td th:text="${customer.familyName}"></td>
 			<td th:text="${customer.firstName}"></td>
-			<td><input type="button" value="編集" class="btn btn-secondary"></td>
-			<td><input type="button" value="削除" class="btn btn-danger"></td>
+			<td><form method="post" action="/customers/edit">
+				<input type="hidden" name="form" value="編集">
+				<input type="hidden" name="id" th:value="${customer.id}">
+				<input type="hidden" name="familyName" th:value="${customer.familyName}">
+				<input type="hidden" name="firstName" th:value="${customer.firstName}">
+				<input type="submit" value="編集" class="btn btn-secondary">
+				</form></td>
+			<td><form method="post" action="/customers/delete">				
+				<input type="hidden" name="form" value="削除">
+				<input type="hidden" name="familyName" th:value="${customer.familyName}">
+				<input type="hidden" name="firstName" th:value="${customer.firstName}">
+				<input type="hidden" name="id" th:value="${customer.id}">
+				<input type="submit" value="削除" class="btn btn-danger">
+				</form></td>
 		</tr>
 	</tbody>
 	</table>

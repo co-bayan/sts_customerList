@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>顧客管理一覧</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" />
+<style>
+	body { margin:30px 100px; }
+	input { margin:8px; }
+	.delete { margin-left:50px; }
+</style>
+</head>
+<body>
+	<h1>顧客管理システム</h1>
+	<h4 class=border-bottom>顧客情報削除</h4>
+	<form method="post" action="/customers" class="delete">
+		<input type="hidden" name="id" th:value="${id}" />
+		<p>姓：[[${familyName}]]</p>
+		<p>名：[[${firstName}]]</p>
+		<input type="button" name="return" class="btn btn-secondary" value="戻る" onClick="location.href='./'" />
+		<input type="submit" name="delete" class="btn btn-danger" value="削除" />
+	</form>
+</body>
+</html>
+
+

@@ -6,8 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,20 +14,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "customers")
+@Table(name = "customer")
 public class CustomerData {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	@NotNull
-	private Integer id;
+	private Long id;
 	
 	@Column
-	@NotEmpty
+	@Size(min=1, max=127)
 	private String familyName;
 	
 	@Column
-	@NotEmpty
+	@Size(min=1, max=127)
 	private String firstName;
 }

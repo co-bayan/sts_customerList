@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>顧客管理一覧</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" />
+<style>
+	body { margin:30px 100px; }
+	input { margin:8px; }
+	.update { margin-left:50px; }
+	.err { color:red; }
+</style>
+</head>
+<body>
+	<h1>顧客管理システム</h1>
+	<h4 class=border-bottom>顧客情報編集</h4>
+	<form method="post" action="/customers/edit" th:object="${customer}" class="update">
+		<input type="hidden" name="id" th:value="*{id}" />
+		<label for="familyName">姓</label><input type="text" name="familyName" th:value="*{familyName}" /><br/>
+		<div th:if="${#fields.hasErrors('familyName')}" th:errors="*{familyName}" th:errorclass="err" ></div>
+		<label for="firstName">名</label><input type="text" name="firstName" th:value="*{firstName}" /><br/>
+		<div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="err" ></div>
+		<input type="button" name="return" class="btn btn-secondary" value="戻る" onClick="location.href='./'" />
+		<input type="submit" name="update" class="btn btn-primary" value="更新" />
+	</form>
+</body>
+</html>
+
+
